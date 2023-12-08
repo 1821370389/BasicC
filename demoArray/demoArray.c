@@ -10,10 +10,11 @@
 
 int main()
 {
+
     /* 方法1：使用定义初始化 */
-    // int array[BUFFER_SIZE] = {0};
-    /* 方法2：使用赋值初始化 */
-    int array[BUFFER_SIZE] ;
+    int array[BUFFER_SIZE] = {0};
+    
+    // int array[BUFFER_SIZE] ;
 
     for(int idx = 0 ; idx < BUFFER_SIZE ; idx++)
     {
@@ -21,7 +22,7 @@ int main()
     }
     int len = sizeof(array);
     printf("%d\n",len );
-
+#if 0
     /* 地址 */
     /* 3.数组的（首）地址 和数组的首元素的地址是一样的 */
     printf("array=%p\n",array);
@@ -32,13 +33,14 @@ int main()
     printf("len:%p\n",&len);
     printf("==========\n");
 
+    /* 方法2：使用memset函数 */
     memset(array, 0, sizeof(array));
     for(int idx = 0 ; idx < BUFFER_SIZE ; idx++)
     {
         printf("array[%d]=%d\n",idx,array[idx]);
     }
-
-
-
+#endif
+    printf("array[-1]=%d\n",array[-1]);
+    printf("array[10]=%d\n",array[10]);
     return 0;
 }
