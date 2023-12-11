@@ -2,6 +2,8 @@
 /* A，B in list；A+B=C */
 #include <stdio.h>
 
+#define ARRAY_SIZE 5
+
 int arraySum(int *array, int tonget, int size, int *outcome)
 {
     for(int idx = 0; idx < size; idx++)
@@ -22,10 +24,10 @@ int arraySum(int *array, int tonget, int size, int *outcome)
 
 int main()
 {
-    int array[5];
+    int array[ARRAY_SIZE];
     int tonget ;
     printf("请输入数组(5个数)：\n");
-    for(int idx = 0; idx < 5; idx++)
+    for(int idx = 0; idx < ARRAY_SIZE; idx++)
     {
         printf("请输入第%d个数：", idx+1);
         scanf("%d", &array[idx]);
