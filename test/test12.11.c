@@ -71,9 +71,8 @@ int main()
     {
         array[idx] = rand() % 20 + 1;
     }
-#if 1
+#if 0
     /* 冒泡排序 */
-    int temp = 0;
     for(int idx = 0; idx < ARRAYSIZE; idx++)
     {
         for(int jdx = 0; jdx < ARRAYSIZE - 1 - idx ; jdx++)
@@ -84,9 +83,39 @@ int main()
             }
         }
     }
-#else
+
     /* 快速排序 */
     quickSort(array, 0, ARRAYSIZE - 1);
+
+    /* 插入排序 */
+    int temp = 0;
+    for(int idx = 1; idx < ARRAYSIZE; idx++)
+    {
+        temp = array[idx];
+        int jdx = idx - 1;
+        while(jdx >= 0 && array[jdx] > temp)
+        {
+            array[jdx+1] = array[jdx];
+            jdx--;
+        }
+        array[jdx+1] = temp;
+        
+    }
+#else
+    /* 选择排序 */
+    int temp;
+    for(int idx = 0; idx < ARRAYSIZE; idx++)
+    {
+        temp = idx;
+        for(int jdx = idx + 1; jdx < ARRAYSIZE; jdx++)
+        {
+            if(array[temp] > array[jdx])
+            {
+                temp = jdx;
+            }
+        }
+        swap(&array[idx], &array[temp]);
+    }
 #endif
 
     /* 打印数组 */
@@ -106,7 +135,8 @@ int main()
         }
     }
     /* 创建新数组 */
-    int *Array2 = (int *)malloc(count * sizeof(int));
+    int Array2[count];
+    // int *Array2 = (int *)malloc(count * sizeof(int));
     /* 数组初始化 */
     // memset(Array2, 0, count * sizeof(int));
     count = 0;
@@ -121,6 +151,8 @@ int main()
     
     /* 打印新数组 */
     printArray(Array2, count);
+    /* 释放动态数组内存 */
+    // free(Array2);
 #else
     /* 如果不需要新数组,直接打印*/
     for(int idx = 0; idx < ARRAYSIZE; idx++)
