@@ -6,6 +6,59 @@
 
 #define ARRAYSIZE 10
 
+/* 交换两个数 */
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+/* 打印数组 */
+void printArray(int array[], int size)
+{
+    for(int idx = 0; idx < size; idx++)
+    {
+        printf("%d ", array[idx]);
+    }
+    printf("\n");
+}
+
+/* 快速排序 */
+void quickSort(int array[], int start, int end)
+{
+    if(start >= end)
+    {
+        return ;
+    }
+    int mid = array[end];
+    int left = start, right = end - 1;
+    while(left < right)
+    {
+        while(left < right && array[left] <= mid)
+        {
+            left++;
+        }
+        while(left < right && array[right] >= mid)
+        {
+            right--;
+        }
+        swap(&array[left], &array[right]);
+    }
+    if(array[left] > mid)
+    {
+        swap(&array[left], &array[end]);
+    }
+    else
+    {
+        left++;
+    }
+    if(left)
+    {
+        quickSort(array, start, left - 1);
+    }
+    quickSort(array, left + 1, end);
+}
 int main()
 {
 #if 1
@@ -17,7 +70,7 @@ int main()
     {
         array[idx] = rand() % 20 + 1;
     }
-
+#if 0
     /* 冒泡排序 */
     int temp = 0;
     for(int idx = 0; idx < ARRAYSIZE; idx++)
@@ -26,19 +79,17 @@ int main()
         {
             if(array[idx] < array[jdx])
             {
-                temp = array[idx];
-                array[idx] = array[jdx];
-                array[jdx] = temp;
+                swap(&array[idx], &array[jdx]);
             }
         }
     }
+#else
+    /* 快速排序 */
+    quickSort(array, 0, ARRAYSIZE - 1);
+#endif
 
     /* 打印数组 */
-    for(int idx = 0; idx < ARRAYSIZE; idx++)
-    {
-        printf("%d ", array[idx]);
-    }
-    printf("\n");
+    printArray(array, ARRAYSIZE);
 
 #endif
 
@@ -66,13 +117,9 @@ int main()
     }
     
     /* 打印新数组 */
-    for(int idx = 0; idx < count; idx++)
-    {
-        printf("%d ", Array2[idx]);  //打印新数组的长度  
-    }
-    printf("\n");
+    printArray(Array2, count);
 #else
-    /* 如果不需要新数组的话*/
+    /* 如果不需要新数组,直接打印*/
     for(int idx = 0; idx < ARRAYSIZE; idx++)
     {
         if(array[idx] != array[idx+1])
