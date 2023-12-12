@@ -1,43 +1,46 @@
 
-int mystrlen(char* str)
+int mystrlen(const char* str)
 {
-    char* p = str;
+    // char* p = str;
     int count = 0;
-    while (*p != '\0')
+    while (*str != '\0')
     {   
         count++;
-        p++;
+        str++;
     }
     return count;
     
 }
 
-void mystrcpy(char dest[], char src[])
+void mystrcpy(char * dest, const char * src)
 {
-    int idx = 0;
-    while (src[idx] != '\0')
+    // int idx = 0;
+    while (*src != '\0')
     {
-        dest[idx] = src[idx];
-        idx++;
+        *dest = *src;
+        dest++;
+        src++;
     }
-    dest[idx] = '\0';
+    *dest = '\0';
     
 }
-void mystrcat(char dest[], char src[])
+void mystrcat(char * dest, const char * src)
 {
-    int idx = 0;
-    while (dest[idx] != '\0')
+    // int idx = 0;
+    while (*dest != '\0')
     {
-        idx++;
+        dest++;
     }
-    int idx2 = 0;
-    while (src[idx2] != '\0')
+    // int idx2 = 0;
+    while (*src != '\0')
     {
-        dest[idx+idx2] = src[idx2];
-        idx2++;
+        *dest = *src;
+        dest++;
+        src++;
     }
+    *dest = '\0';
 }
-int mystrcmp(char* str1, char* str2)
+int mystrcmp(const char* str1, const char* str2)
 {
     while(*str1 == *str2)
     {
