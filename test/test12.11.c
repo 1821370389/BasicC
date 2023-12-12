@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #define ARRAYSIZE 10
@@ -70,16 +71,16 @@ int main()
     {
         array[idx] = rand() % 20 + 1;
     }
-#if 0
+#if 1
     /* 冒泡排序 */
     int temp = 0;
     for(int idx = 0; idx < ARRAYSIZE; idx++)
     {
-        for(int jdx = 0; jdx < ARRAYSIZE ; jdx++)
+        for(int jdx = 0; jdx < ARRAYSIZE - 1 - idx ; jdx++)
         {
-            if(array[idx] < array[jdx])
+            if(array[jdx] > array[jdx+1])
             {
-                swap(&array[idx], &array[jdx]);
+                swap(&array[jdx], &array[jdx+1]);
             }
         }
     }
@@ -94,7 +95,7 @@ int main()
 #endif
 
 /* 数组去重 */
-#if 0
+#if 1
     /* 测量新数组的长度 */
     int count = 0;
     for(int idx = 0; idx < ARRAYSIZE; idx++)
@@ -106,6 +107,8 @@ int main()
     }
     /* 创建新数组 */
     int *Array2 = (int *)malloc(count * sizeof(int));
+    /* 数组初始化 */
+    // memset(Array2, 0, count * sizeof(int));
     count = 0;
     for(int idx = 0; idx < ARRAYSIZE; idx++)
     {
