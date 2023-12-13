@@ -1,6 +1,13 @@
+#include"myString.h"
+#include<stdio.h>
+
 
 int mystrlen(const char* str)
 {
+    if(str == NULL)
+    {
+        return 0;
+    }
     // char* p = str;
     int count = 0;
     while (*str != '\0')
@@ -14,6 +21,10 @@ int mystrlen(const char* str)
 
 void mystrcpy(char * dest, const char * src)
 {
+    if(dest == NULL || src == NULL)
+    {
+        return 0;
+    }
     // int idx = 0;
     while (*src != '\0')
     {
@@ -26,6 +37,10 @@ void mystrcpy(char * dest, const char * src)
 }
 void mystrcat(char * dest, const char * src)
 {
+    if(dest == NULL || src == NULL)
+    {
+        return 0;
+    }
     // int idx = 0;
     while (*dest != '\0')
     {
@@ -42,6 +57,10 @@ void mystrcat(char * dest, const char * src)
 }
 int mystrcmp(const char* str1, const char* str2)
 {
+    if(str1 == NULL || str2 == NULL)
+    {
+        return 0;
+    }
     while(*str1 == *str2)
     {
         if(*str1 == '\0')
