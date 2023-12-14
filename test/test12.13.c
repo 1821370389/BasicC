@@ -68,106 +68,54 @@ void quickSort(int *array, int start, int end)
     quickSort(array, left + 1, end);
 }
 
-void mergeOrderNums(int *nums1, int numsSize1, int *nums2, int numsSize2, int *newNumSize)
+
+/* 合并有序数组 */
+int *mergeOrderNums(int *nums1, int numsSize1, int *nums2, int numsSize2, int *newNumSize)
 {
-#if 1
+    /* 计算新数组大小 */
+    *newNumSize = numsSize1 + numsSize2;
+    /* 为新数组开辟空间 */
+    int * newNum = (int *)malloc(sizeof(int) * (numsSize1 + numsSize2));
+    /* 初始化新数组 */
+    memset(newNum, 0, sizeof(int) * *newNumSize);
+    /* 旧数组计数的临时变量 */
     int count1 = 0,count2 = 0;
-
-    int count = 0;
-    
-        
-        /* 有一方数组填完后跳出循环 */
-        while(count1 < numsSize1 && count2 < numsSize2)
+    /* 便利新数组的临时指针 */
+    int *temp = newNum;
+    /* 任意一个旧数组遍历完后跳出循环 */
+    while(count1 < numsSize1 && count2 < numsSize2)
+    {
+        if(*nums1 < *nums2)
         {
-            if(nums1[count1] < nums2[count2])
-            {
-                newNumSize[count++] = nums1[count1++];
-            }
-            else if(nums1[count1] > nums2[count2])
-            {
-                newNumSize[count++] = nums2[count2++];
-            }
-            /* 若两数相等，都塞进去 */
-            else
-            {
-                newNumSize[count++] = nums1[count1++];
-                newNumSize[count++] = nums2[count2++];
-            }
-        }
-    #if 0
-        /* 若数组二有剩，塞进去 */
-        if(count2 != numsSize2)
-        {
-            for(; count2 < numsSize2; count2++)
-            {
-                newNumSize[count++] = nums2[count2];
-            }
-        }
-        /* 否则，把数组一剩余的塞进去 */
-        else 
-        {
-            for(; count1 < numsSize1; count1++)
-            {
-                newNumSize[count++] = nums1[count1];
-                printf("2count1:%d\n",count1);
-                // count++;
-            }
-        }
-    #else
-        while(count1 < numsSize1)
-        {
-            newNumSize[count++] = nums1[count1++];
-        }
-        while(count2 < numsSize2)
-        {
-            newNumSize[count++] = nums2[count2++];
-        }
-    #endif
-    
-
-#else
-    int count1 = 0,count2 = 0;
-    // for(int count = 0; count < numsSize1 + numsSize2; count++)
-    // {
-        while(count1 < numsSize1 && count2 < numsSize2)
-        {
-            if(*nums1 < *nums2)
-            {
-                *newNumSize++ = *nums1++;
-                count1++;
-                // count++;
-            }
-            else if(*nums1 > *nums2)
-            {
-                *newNumSize++ = *nums2++;
-                count2++;
-                // count++;
-            }
-            else
-            {
-                *newNumSize++ = *nums1++;
-                *newNumSize++ = *nums2++;
-                count1++;
-                count2++;
-                // count += 2;
-            }
-        }
-        while(count1 < numsSize1)
-        {
-            *newNumSize++ = *nums1++;
+            *temp++ = *nums1++;
             count1++;
-            // count++;
         }
-        while(count2 < numsSize2)
+        else if(*nums1 > *nums2)
         {
-            *newNumSize++ = *nums2++;
+            *temp++ = *nums2++;
             count2++;
-            // count++;
         }
-
-    // }
-#endif
-
+        else
+        {
+            *temp++ = *nums1++;
+            *temp++ = *nums2++;
+            count1++;
+            count2++;
+        }
+    }
+    /* 将剩余一个数组遍历完 */
+    while(count1 < numsSize1)
+    {
+        *temp++ = *nums1++;
+        count1++;
+    }
+    while(count2 < numsSize2)
+    {
+        *temp++ = *nums2++;
+        count2++;
+    }
+    /* 返回新数组的地址 */
+    return newNum;
 }
 
 
@@ -198,23 +146,26 @@ int main()
     printArray(nums1, BUFF_SIZE1);
     printArray(nums2, BUFF_SIZE2);
 
-    /* 创建合并数组 */
-    int *newNums = (int *)malloc(sizeof(int) * (BUFF_SIZE1 + BUFF_SIZE2));
-    
-    /* 合并数组初始化 */
-    memset(newNums, 0, sizeof(int) * BUFF_SIZE1 + BUFF_SIZE2);
+    /* 合并后数组的大小 */
+    int *newNumsSize = NULL;
+    newNumsSize = (int *)malloc(sizeof(int));
 
     /* 合并数组排序 */
-    mergeOrderNums(nums1, BUFF_SIZE1, nums2, BUFF_SIZE2, newNums);
+    int * newNums = mergeOrderNums(nums1, BUFF_SIZE1, nums2, BUFF_SIZE2, newNumsSize);
 
     /* 打印合并数组 */
-    printArray(newNums, BUFF_SIZE1 + BUFF_SIZE2);
+    printArray(newNums, *newNumsSize);
 
     /* 释放内存 */
     if(newNums != NULL)
     {
         free(newNums);
         newNums = NULL;
+    }
+    if(newNumsSize != NULL)
+    {
+        free(newNumsSize);
+        newNumsSize = NULL;
     }
     return 0;
 }
