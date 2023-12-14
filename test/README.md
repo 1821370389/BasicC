@@ -7,5 +7,11 @@ A，B in list；A+B=C
 (./myString)
 手写字符串的四个常用函数
 
-202.12.12(test12.12.c)
+2023.12.12(test12.12.c)
 删除数组中的特定值 & 删除数组中重复出现过的数字  
+
+2023.12.13(test12.13.c)
+非连续有序数组的合并
+要求使用malloc
+函数名为
+mergeOrderNums(int *nums1, int numsSize1, int *nums2, int numsSize2, int *newNumSize)
