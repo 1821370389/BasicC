@@ -15,3 +15,7 @@ A，B in list；A+B=C
 要求使用malloc
 函数名为
 mergeOrderNums(int *nums1, int numsSize1, int *nums2, int numsSize2, int *newNumSize)
+
+2023.12.14 ( 12\14.c)
+判断不止字符的字符串中的字符组成的字符串是否是回文字符串
+
