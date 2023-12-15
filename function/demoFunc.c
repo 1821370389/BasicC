@@ -59,7 +59,7 @@ typedef enum STATUS_CODE
 #endif
 
 /* 函数指针 就是钩子函数 主要用在回调函数 */
-#if 1
+#if 0
 
 /* 函数*/
 void printStr()
@@ -68,6 +68,8 @@ void printStr()
 }
 
 #endif
+
+#if 0
 int main()
 {
     int choice = 0;
@@ -117,4 +119,31 @@ int main()
 #endif
 
     return 0;
+}
+#endif
+
+// #define BUFFER_SIZE 10
+int calStrlen(const char *str)
+{
+    int ret = 0;
+    if(!str)
+    {
+        return ret;
+    }
+    /*为避免指针移动，做数据备份*/
+    const char *p = str;
+    int count = 0;
+    while(*p != '\0')
+    {
+        count++;
+        p++;
+    }
+    return count;
+}
+int main()
+{
+    char *buf="hello world";
+    int len = calStrlen(buf);
+    printf("len = %d\n", len);
+
 }
