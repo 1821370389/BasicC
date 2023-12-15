@@ -58,12 +58,28 @@ typedef enum STATUS_CODE
 
 #endif
 
+/* 函数指针 就是钩子函数 主要用在回调函数 */
 #if 1
+
+/* 函数*/
+void printStr()
+{
+    printf("hello world\n");
+}
 
 #endif
 int main()
 {
+    int choice = 0;
 
+    /* 函数指针*/
+    void (*pFunc)() = printStr;
+    pFunc();
+
+    if(choice == 1)
+    {
+        printStr();
+    }
 #if 0
     /* 函数调用 */
     purchaseAppointThing();
@@ -83,7 +99,7 @@ int main()
     printf("len = %d\n", len);
 #endif
 
-#if 1
+#if 0
     int num1 = 50;
     int num2 = 60;
     int sum = calculateAdd(num1,num2);
@@ -99,5 +115,6 @@ int main()
     printf("div = %d\n", div);
 
 #endif
+
     return 0;
 }
