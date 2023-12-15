@@ -73,8 +73,12 @@ int main()
         1.它是一个数组
         2.存放的是字符串
     */
-   printf("names[0][0]:%c\n", names[0][0]);
+    printf("names[0][0]:%c\n", names[0][0]);
 
+    /* 指针即数组 */
+    printf("names[0]:%s\n", *(names + 0));
+
+    printf("names[0][1]:%c\n", *(*(names + 0) + 1));
     #endif
 
 
