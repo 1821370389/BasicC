@@ -57,6 +57,10 @@ void clearNotString(char *array, int *size)
 /* 判断字符串是否是回文*/
 int isPalindromic(char *array, int size)
 {
+    if(array == NULL || size <= 0)
+    {
+        return 0;
+    }
     char *ptr = array;
     char *pop = array + size - 1;
     while(ptr < pop)
