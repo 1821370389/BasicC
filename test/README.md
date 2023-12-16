@@ -19,3 +19,6 @@ mergeOrderNums(int *nums1, int numsSize1, int *nums2, int numsSize2, int *newNum
 2023.12.14 ( 12\14.c)
 判断不止字符的字符串中的字符组成的字符串是否是回文字符串
 
+2023.12.15 (12\15.c)
+二维数组转置
+炒股购买利益最大化，只能买卖一次 （最大差值）
