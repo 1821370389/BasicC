@@ -22,3 +22,6 @@ mergeOrderNums(int *nums1, int numsSize1, int *nums2, int numsSize2, int *newNum
 2023.12.15 (12\15.c)
 二维数组转置
 炒股购买利益最大化，只能买卖一次 （最大差值）
+
+2023.12.16(12\16.c)
+清除字符串中多余的空格，并反转单词的顺序 
