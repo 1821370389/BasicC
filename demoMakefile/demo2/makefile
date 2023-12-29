@@ -1,15 +1,20 @@
-main : main.o add.o sub.o div.o mul.o
-	gcc main.o add.o sub.o div.o mul.o -o a
+#自定义变量
+OBJ = main.o add.o sub.o div.o mul.o
+TARGET = main
+
+#使用变量:$(变量名)
+$(TARGET): $(OBJ)
+	gcc $^ -o $@
 
 
 add.o: add.c
-	gcc -c add.c -o add.o
+	gcc -c $^ -o $@
 sub.o:sub.c
-	gcc -c sub.c -o sub.o
+	gcc -c $^ -o $@
 div.o:div.c
-	gcc -c div.c -o div.o
+	gcc -c $^ -o $@
 mul.o:mul.c
-	gcc -c mul.c -o mul.o
+	gcc -c $^ -o $@
 
 clean:
-	@rm -rf a *.o
+	@rm -rf  *.o $@
