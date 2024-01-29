@@ -3,9 +3,12 @@
 OBJ = $(patsubst %.c, %.o, $(wildcard ./*.c))
 TARGET = main
 
+LDFLA=./src_a/
+LIBS=-laMyAdd
+
 #使用变量:$(变量名)
-$(TARGET): $(OBJ) $(LIBS) -L$(LDFLA)
-	gcc $^ -o $@
+$(TARGET): $(OBJ)
+	gcc $^ $(LIBS) -L$(LDFLA) -o $@
 
 %.o: %.c
 	gcc -c $^ -o $@
