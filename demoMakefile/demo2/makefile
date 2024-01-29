@@ -1,20 +1,24 @@
 #自定义变量
-OBJ = main.o add.o sub.o div.o mul.o
+# OBJ = main.o add.o sub.o div.o mul.o
+OBJ = $(patsubst %.c, %.o, $(wildcard ./*.c))
 TARGET = main
 
 #使用变量:$(变量名)
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) $(LIBS) -L$(LDFLA)
 	gcc $^ -o $@
 
+%.o: %.c
+	gcc -c $^ -o $@
 
-add.o: add.c
-	gcc -c $^ -o $@
-sub.o:sub.c
-	gcc -c $^ -o $@
-div.o:div.c
-	gcc -c $^ -o $@
-mul.o:mul.c
-	gcc -c $^ -o $@
+# # 伪目标/伪文件
+.PHONY: clean
 
 clean:
-	@rm -rf  *.o $@
+	@rm -rf  *.o $(TARGET)
+
+show:
+#显示当前目录所以.c文件
+	@echo $(wildcard ./*c)
+#显示当前目录所有.c文件并用.o替换.c
+	@echo $(patsubst %.c, %.o, $(wildcard ./*.c))
+	
