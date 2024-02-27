@@ -6,17 +6,24 @@
 
 /* 状态码*/
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
-/* 加法 */
-int calculateAdd(int num1, int num2);
+    /* 加法 */
+    int calculateAdd(int num1, int num2);
 
-/* 减法 */
-int calculateSub(int num1, int num2);
+    /* 减法 */
+    int calculateSub(int num1, int num2);
 
-/* 乘法 */
-int calculateMul(int num1, int num2);
+    /* 乘法 */
+    int calculateMul(int num1, int num2);
 
-/* 除法 */
-int calculateDiv(int num1, int num2);
+    /* 除法 */
+    int calculateDiv(int num1, int num2);
+#ifdef __cplusplus
+}
+#endif
 
 #endif
